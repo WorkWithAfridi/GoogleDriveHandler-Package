@@ -1,4 +1,4 @@
-name: GoogleDriveHandler
+name: googledrivehandler
 description: A package for viewing, browsing, searching, downloading and uploading Google Drive files. Once triggered and authenticated, users can view their own Google Drive contents, browse and download them, they can even upload files directly from the app to their Google Drive storage.
 version: 0.0.1
 homepage: https://github.com/llKYOTOll/GoogleDriveHandler
