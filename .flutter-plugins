@@ -1,0 +1,15 @@
+# This is a generated file; do not edit or check into version control.
+firebase_auth=C:\\Flutter_SDK\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\firebase_auth-3.9.0\\
+firebase_auth_web=C:\\Flutter_SDK\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\firebase_auth_web-4.4.1\\
+firebase_core=C:\\Flutter_SDK\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\firebase_core-1.22.0\\
+firebase_core_web=C:\\Flutter_SDK\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\firebase_core_web-1.7.2\\
+google_sign_in=C:\\Flutter_SDK\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\google_sign_in-5.4.1\\
+google_sign_in_android=C:\\Flutter_SDK\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\google_sign_in_android-6.1.1\\
+google_sign_in_ios=C:\\Flutter_SDK\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\google_sign_in_ios-5.5.0\\
+google_sign_in_web=C:\\Flutter_SDK\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\google_sign_in_web-0.10.2\\
+path_provider=C:\\Flutter_SDK\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\path_provider-2.0.11\\
+path_provider_android=C:\\Flutter_SDK\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\path_provider_android-2.0.20\\
+path_provider_ios=C:\\Flutter_SDK\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\path_provider_ios-2.0.11\\
+path_provider_linux=C:\\Flutter_SDK\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\path_provider_linux-2.1.7\\
+path_provider_macos=C:\\Flutter_SDK\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\path_provider_macos-2.0.6\\
+path_provider_windows=C:\\Flutter_SDK\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\path_provider_windows-2.1.3\\
