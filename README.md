@@ -49,7 +49,7 @@ This plugin requires iOS 9.0 or higher.
 		<key>CFBundleURLSchemes</key>
 		<array>
 			<!-- TODO Replace this value: -->
-			<!-- Copied from GoogleService-Info.plist key REVERSED_CLIENT_ID -->
+			<!-- You can find the following REVERSED_CLIENT_ID at GoogleService-Info.plist, copy your REVERSED_CLIENT_ID and replace the one given here! -->
 			<string>com.googleusercontent.apps.861823949799-vc35cprkp249096uujjn0vvnmcvjppkn</string>
 		</array>
 	</dict>

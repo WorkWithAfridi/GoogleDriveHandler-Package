@@ -14,9 +14,13 @@ class GoogleDriveScreen extends StatefulWidget {
     required this.userName,
   });
 
+  // This is the file list received from the users google drive, folders are automatically and the contents are extracted and added onto this list!
   FileList fileList;
+  // This is the authenticated users display name, extracted from the google signin process.
   String userName;
+  // This is the developers GOOGLE CLOUD CONSOLE API CREDENTIAL KEY.
   String GOOGLEDRIVEAPIKEY;
+  // This is the authenticaedClient, generated after the signing in process.
   var authenticateClient;
 
   @override
@@ -24,10 +28,13 @@ class GoogleDriveScreen extends StatefulWidget {
 }
 
 class _GoogleDriveScreenState extends State<GoogleDriveScreen> {
+  //On every search input this function gets called, and the search value (searchVal gets updated).
   onSearchFieldChange(String val) {
     setState(() {
       searchVal = val;
     });
+    // If the input value is null, set searchVal to null.
+    // When the searchVal is set as null the listWill show all the elements.
     if (val.isEmpty) {
       setState(() {
         searchVal = null;
@@ -35,9 +42,17 @@ class _GoogleDriveScreenState extends State<GoogleDriveScreen> {
     }
   }
 
+  // Keeps a track of the search toogle.
   bool showSearchTextForm = false;
+
+  // This is the search value based on which the search results are shown,
   String? searchVal;
+
+  // This is the search text editing controller.
+  // We wont be using this controller.
   TextEditingController searchController = TextEditingController();
+
+  // Keeps a track on whether the UI is loading or not
   bool isLoading = false;
 
   @override
@@ -57,8 +72,13 @@ class _GoogleDriveScreenState extends State<GoogleDriveScreen> {
             color: Colors.black,
           ),
         ),
+
+        // Title widget changes base on whether user toggles search on not.
         title: showSearchTextForm
-            ? TextFormField(
+            ?
+            // when search has been toggled this title Widget will be shown.
+            // This is the text input field where users will input their search term
+            TextFormField(
                 controller: searchController,
                 // textAlignVertical: TextAlignVertical.center,
                 onChanged: (String value) {
@@ -79,7 +99,9 @@ class _GoogleDriveScreenState extends State<GoogleDriveScreen> {
                   ),
                 ),
               )
-            : Text(
+            :
+            //Default title widget
+            Text(
                 "${widget.userName}'s Google Drive",
                 style: const TextStyle(
                   color: Colors.black,
@@ -115,9 +137,11 @@ class _GoogleDriveScreenState extends State<GoogleDriveScreen> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
+                  // Default top padding
                   const SizedBox(
                     height: 10,
                   ),
+                  // List of files from the authenticated users Google drive account
                   ListView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
@@ -126,8 +150,11 @@ class _GoogleDriveScreenState extends State<GoogleDriveScreen> {
                       File file = widget.fileList.files!.toList()[index];
 
                       if (searchVal == null) {
+                        // If searchVal is null, show all files and folders.
                         return (file.mimeType!.contains(".folder")
-                            ? const SizedBox.shrink()
+                            ?
+                            // if the list contains folders, ignore the folders. Since all the contents from the folders are already extracted and added in the file list.
+                            const SizedBox.shrink()
                             : Padding(
                                 padding: const EdgeInsets.only(
                                   bottom: 10,
@@ -145,6 +172,7 @@ class _GoogleDriveScreenState extends State<GoogleDriveScreen> {
                                 ),
                               ));
                       } else {
+                        // if the searchVal is not null return only the files that contatins the searchVal in their name
                         if (file.name!
                             .toLowerCase()
                             .contains(searchVal!.toLowerCase())) {
@@ -167,6 +195,7 @@ class _GoogleDriveScreenState extends State<GoogleDriveScreen> {
                                   ),
                                 );
                         } else {
+                          // Ignore if the file name does not contain the searchVal term.
                           return const SizedBox.shrink();
                         }
                       }
@@ -176,6 +205,7 @@ class _GoogleDriveScreenState extends State<GoogleDriveScreen> {
               ),
             ),
           ),
+          // If is loading show, circular progress indicator.
           isLoading
               ? const Center(
                   child: CircularProgressIndicator(
@@ -195,14 +225,11 @@ class _GoogleDriveScreenState extends State<GoogleDriveScreen> {
     String fileName = file.name!;
     String fileId = file.id!;
     String fileMimeType = file.mimeType!;
-    print(fileName);
-    print(fileId);
-    print(fileMimeType);
 
     http.Response? response;
 
     if (fileMimeType.contains("spreadsheet") && !fileName.contains(".xlsx")) {
-      //For google doc files ONLY
+      //If the file is a google doc file, export the file as instructed by the google team.
       String url =
           "https://www.googleapis.com/drive/v3/files/${file.id}/export?mimeType=application/vnd.openxmlformats-officedocument.spreadsheetml.sheet&key=${widget.GOOGLEDRIVEAPIKEY} HTTP/1.1";
 
@@ -210,7 +237,7 @@ class _GoogleDriveScreenState extends State<GoogleDriveScreen> {
         Uri.parse(url),
       );
     } else if (!fileMimeType.contains(".folder")) {
-      //FOR NORMAL FILES
+      // If the file is uploaded from somewhere else or if the file is not a google doc file process it with the "Files: Get" process.
       String url =
           "https://www.googleapis.com/drive/v3/files/$fileId?includeLabels=alt%3Dmedia&alt=media&key=${widget.GOOGLEDRIVEAPIKEY} HTTP/1.1";
 
@@ -220,15 +247,13 @@ class _GoogleDriveScreenState extends State<GoogleDriveScreen> {
     }
 
     if (response != null) {
-      print(response.body);
-      print(response.bodyBytes);
-
+      // Get temporary application document directory
       final dir = await getApplicationDocumentsDirectory();
+      // Create custom path, where the downloaded file will be saved. TEMPORARILY
       String path = "${dir.path}/${file.name}";
+      // Save the file
       io.File myFile = await io.File(path).writeAsBytes(response.bodyBytes);
-
-      print(myFile.path);
-
+      // Returns the files
       Navigator.pop(
         context,
         myFile,
@@ -240,6 +265,7 @@ class _GoogleDriveScreenState extends State<GoogleDriveScreen> {
   }
 }
 
+// This is the custom widget which lays out the google drive files.
 class _ItemCard extends StatelessWidget {
   _ItemCard({
     Key? key,
