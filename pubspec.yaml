@@ -8,7 +8,6 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
-  cupertino_icons: ^1.0.2
   firebase_auth: ^3.9.0
   firebase_core: ^1.22.0
   flutter:
