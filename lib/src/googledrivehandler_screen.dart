@@ -59,34 +59,34 @@ class _GoogleDriveScreenState extends State<GoogleDriveScreen> {
         ),
         title: showSearchTextForm
             ? TextFormField(
-          controller: searchController,
-          // textAlignVertical: TextAlignVertical.center,
-          onChanged: (String value) {
-            onSearchFieldChange(value);
-          },
-          style: TextStyle(
-            // fontSize: 12,
-            fontWeight: FontWeight.w400,
-            color: Colors.grey[700],
-          ),
-          cursorColor: Colors.black,
-          decoration: const InputDecoration(
-            hintText: "Search",
-            border: InputBorder.none,
-            contentPadding: EdgeInsets.symmetric(
-              horizontal: 0,
-              vertical: 0,
-            ),
-          ),
-        )
+                controller: searchController,
+                // textAlignVertical: TextAlignVertical.center,
+                onChanged: (String value) {
+                  onSearchFieldChange(value);
+                },
+                style: TextStyle(
+                  // fontSize: 12,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.grey[700],
+                ),
+                cursorColor: Colors.black,
+                decoration: const InputDecoration(
+                  hintText: "Search",
+                  border: InputBorder.none,
+                  contentPadding: EdgeInsets.symmetric(
+                    horizontal: 0,
+                    vertical: 0,
+                  ),
+                ),
+              )
             : Text(
-          "${widget.userName}'s Google Drive",
-          style: const TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.w600,
-            fontSize: 15,
-          ),
-        ),
+                "${widget.userName}'s Google Drive",
+                style: const TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 15,
+                ),
+              ),
         centerTitle: true,
         actions: [
           IconButton(
@@ -129,21 +129,21 @@ class _GoogleDriveScreenState extends State<GoogleDriveScreen> {
                         return (file.mimeType!.contains(".folder")
                             ? const SizedBox.shrink()
                             : Padding(
-                          padding: const EdgeInsets.only(
-                            bottom: 10,
-                          ),
-                          child: GestureDetector(
-                            onTap: () async {
-                              await _onItemTap(
-                                  file, widget.authenticateClient);
-                            },
-                            child: _ItemCard(
-                              file: file,
-                              fileList: widget.fileList,
-                              index: index,
-                            ),
-                          ),
-                        ));
+                                padding: const EdgeInsets.only(
+                                  bottom: 10,
+                                ),
+                                child: GestureDetector(
+                                  onTap: () async {
+                                    await _onItemTap(
+                                        file, widget.authenticateClient);
+                                  },
+                                  child: _ItemCard(
+                                    file: file,
+                                    fileList: widget.fileList,
+                                    index: index,
+                                  ),
+                                ),
+                              ));
                       } else {
                         if (file.name!
                             .toLowerCase()
@@ -151,21 +151,21 @@ class _GoogleDriveScreenState extends State<GoogleDriveScreen> {
                           return file.mimeType!.contains(".folder")
                               ? const SizedBox.shrink()
                               : Padding(
-                            padding: const EdgeInsets.only(
-                              bottom: 10,
-                            ),
-                            child: GestureDetector(
-                              onTap: () async {
-                                await _onItemTap(
-                                    file, widget.authenticateClient);
-                              },
-                              child: _ItemCard(
-                                file: file,
-                                fileList: widget.fileList,
-                                index: index,
-                              ),
-                            ),
-                          );
+                                  padding: const EdgeInsets.only(
+                                    bottom: 10,
+                                  ),
+                                  child: GestureDetector(
+                                    onTap: () async {
+                                      await _onItemTap(
+                                          file, widget.authenticateClient);
+                                    },
+                                    child: _ItemCard(
+                                      file: file,
+                                      fileList: widget.fileList,
+                                      index: index,
+                                    ),
+                                  ),
+                                );
                         } else {
                           return const SizedBox.shrink();
                         }
@@ -178,10 +178,10 @@ class _GoogleDriveScreenState extends State<GoogleDriveScreen> {
           ),
           isLoading
               ? const Center(
-            child: CircularProgressIndicator(
-              color: Colors.lightBlue,
-            ),
-          )
+                  child: CircularProgressIndicator(
+                    color: Colors.lightBlue,
+                  ),
+                )
               : const SizedBox.shrink(),
         ],
       ),

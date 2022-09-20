@@ -7,3 +7,7 @@
 ## 0.0.2
 
 - Removed unused dependencies
+
+## 0.0.3
+
+- Added Example App
