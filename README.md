@@ -25,7 +25,7 @@ A package for viewing, browsing, searching, downloading and uploading Google Dri
 
 * iOS:
 
-For Google Sign in to work on iOS devices we need to follow the following steps:
+For "Google Sign in" to work on iOS devices we MUST follow the following steps, otherwise the app with crash:
 
 iOS integration
 This plugin requires iOS 9.0 or higher.
