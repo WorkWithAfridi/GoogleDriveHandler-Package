@@ -37,7 +37,7 @@ This plugin requires iOS 9.0 or higher.
 6. A dialog will show up and ask you to select the targets, select the Runner target.
 7. Then add the CFBundleURLTypes attributes below into the [my_project]/ios/Runner/Info.plist file.
 
-````plist
+````md
 
 <!-- Put me in the [my_project]/ios/Runner/Info.plist file -->
 <!-- Google Sign-in Section -->
@@ -60,7 +60,7 @@ This plugin requires iOS 9.0 or higher.
 
 As an alternative to adding GoogleService-Info.plist to your Xcode project, you can instead configure your app in Dart code. In this case, skip steps 3-6 and pass clientId and serverClientId to the GoogleSignIn constructor:
 
-````plist
+````md
 
 GoogleSignIn _googleSignIn = GoogleSignIn(
   ...
