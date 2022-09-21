@@ -11,3 +11,7 @@
 ## 0.0.3
 
 - Added Example App
+
+## 0.0.4
+
+- Code refactoring and clean up
