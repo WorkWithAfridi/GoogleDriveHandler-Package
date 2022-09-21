@@ -6,7 +6,7 @@ A package for viewing, browsing, searching, downloading and uploading Google Dri
 
 ## Images/ Screenshots
 
-//To be added later
+![Demo Image](https://github.com/llKYOTOll/GoogleDriveHandler/blob/master/example/assets/promotional_images/promotional_image.png?raw=true)
 
 ## Features
 
