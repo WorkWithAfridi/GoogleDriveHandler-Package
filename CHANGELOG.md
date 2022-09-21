@@ -19,3 +19,7 @@
 ## 0.0.5
 
 - Updated promotional image
+
+## 0.0.6
+
+- Documentation update
