@@ -19,9 +19,33 @@ A package for viewing, browsing, searching, downloading and uploading Google Dri
 
 * Import this package!
 
+* Integrate Firebase to your project, and active authentication
+
+* Add Google Signin Authentication from firebase
+
+* Generate SHA Keys by
+  1. “cd android”
+  2. “./gradlew signingReport”
+
+* Add SHA Keys to firebase project settings for Google Auth
+
+* Then head over to https://console.cloud.google.com and ACTIVATE GOOGLE DRIVE API for the project
+
+* Then search for Credentials on cloud console and CREATE NEW CREDENTIAL (API KEY) <- You'll need this key later!
+
+* Create instance of the GoogleDriveHandler class, setAPIKey and call the getFileFromGoogleDrive function with the required parameters, that being the context, and thats it!! :D BUT BEFORE THAT...
+
+* Copy the APIKEY and use GoogleDriveHandler().setApiKey(APIKey); to set your key
+
+* And then finally call GoogleDriveHandler().getFilesFromGoogleDrive(context); to get the google drive file list
+
+## Android setup
+
 * Android:
 
 // None
+
+## iOS setup
 
 * iOS:
 
@@ -74,26 +98,6 @@ GoogleSignIn _googleSignIn = GoogleSignIn(
 ````
 
 Note that step 7 is still required.
-
-* Integrate Firebase to your project, and active authentication
-
-* Add Google Signin Authentication from firebase
-
-* Generate SHA Keys by
-  1. “cd android”
-  2. “./gradlew signingReport”
-
-* Add SHA Keys to firebase project settings for Google Auth
-
-* Then head over to https://console.cloud.google.com and ACTIVATE GOOGLE DRIVE API for the project
-
-* Then search for Credentials on cloud console and CREATE NEW CREDENTIAL (API KEY) <- You'll need this key later!
-
-* Create instance of the GoogleDriveHandler class, setAPIKey and call the getFileFromGoogleDrive function with the required parameters, that being the context, and thats it!! :D BUT BEFORE THAT...
-
-* Copy the APIKEY and use GoogleDriveHandler().setApiKey(APIKey); to set your key
-
-* And then finally call GoogleDriveHandler().getFilesFromGoogleDrive(context); to get the google drive file list
 
 ## PLEASE BE ADVISED
 
