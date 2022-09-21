@@ -15,3 +15,7 @@
 ## 0.0.4
 
 - Code refactoring and clean up
+
+## 0.0.5
+
+- Updated promotional image
