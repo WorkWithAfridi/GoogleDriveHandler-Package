@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:googledrivehandler/googledrivehandler.dart';
 import 'package:open_file/open_file.dart';
 
-import 'firebase_options.dart';
+// import 'firebase_options.dart';
+// Connect firebase
 
 void main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
