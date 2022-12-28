@@ -23,3 +23,7 @@
 ## 0.0.6
 
 - Documentation update
+
+## 1.0.0
+
+- Code cleanup and example project updated.

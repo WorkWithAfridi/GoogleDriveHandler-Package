@@ -37,6 +37,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   firebase_core: ^1.22.0
+  open_file: ^3.2.1
   googledrivehandler: 
     path: ../
 
