@@ -20,6 +20,10 @@ A package for viewing, browsing, searching, downloading and uploading Google Dri
 * Import this package!
 
 * Integrate Firebase to your project, and active authentication
+  Please be advised, you can only use 
+  firebase_core: ^1.22.0
+  firebase_auth: ^3.9.0
+  Since the firebase auth version used in this package needs that specific firebase_core version.
 
 * Add Google Signin Authentication from firebase
 

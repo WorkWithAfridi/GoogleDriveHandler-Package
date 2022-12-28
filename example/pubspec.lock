@@ -93,7 +93,7 @@ packages:
     source: hosted
     version: "4.4.1"
   firebase_core:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: firebase_core
       url: "https://pub.dartlang.org"
@@ -183,7 +183,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "0.0.3"
+    version: "0.0.6"
   http:
     dependency: transitive
     description:
