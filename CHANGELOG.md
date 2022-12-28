@@ -27,3 +27,7 @@
 ## 1.0.0
 
 - Code cleanup and example project updated.
+
+## 1.0.1
+
+- Code refactoring
