@@ -10,9 +10,9 @@ import 'package:open_file/open_file.dart';
 
 void main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  // await Firebase.initializeApp(
+  //   // options: DefaultFirebaseOptions.currentPlatform,
+  // );
   runApp(
     const GoogleDriveHandlerExampleApp(),
   );
