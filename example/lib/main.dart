@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:googledrivehandler/googledrivehandler.dart';
 import 'package:open_file/open_file.dart';
@@ -23,7 +22,7 @@ class GoogleDriveHandlerExampleApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: MainScreen(),
     );
@@ -31,13 +30,13 @@ class GoogleDriveHandlerExampleApp extends StatelessWidget {
 }
 
 class MainScreen extends StatelessWidget {
-  MainScreen({super.key});
-  String APIKEY = "YOUR API HERE";
+  const MainScreen({super.key});
+  final String myApiKey = "YOUR API HERE";
 
   @override
   Widget build(BuildContext context) {
     GoogleDriveHandler().setAPIKey(
-      APIKey: APIKEY,
+      apiKey: myApiKey,
     );
     return Scaffold(
       appBar: AppBar(

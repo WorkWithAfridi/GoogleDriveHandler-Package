@@ -1,8 +1,20 @@
 # GoogleDriveHandler
 
-## A package for viewing, browsing, searching, downloading and uploading Google Drive files.
+## "GoogleDriveHandler" package simplifies the integration of Google Drive into Flutter apps, allowing users to seamlessly access their files and folders without leaving the app.
 
-A package for viewing, browsing, searching, downloading and uploading Google Drive files. Once triggered and authenticated, users can view their own Google Drive contents, browse and download them, they can even upload files directly from the app to their Google Drive storage.
+The "GoogleDriveHandler" is a Flutter package that provides a seamless integration of Google Drive functionality into a Flutter app. The package allows users to sign in to their Google accounts, view their Google Drive content within the app, and automatically download selected files to be imported into the app.
+
+Here's an overview of the package's features:
+
+User Authentication: The package provides a simple and secure way for users to sign in to their Google accounts using the Firebase sigin protocol.
+
+Google Drive Integration: After successful authentication, the package fetches the user's Google Drive files and folders and displays them in a separate screen within the app. Users can navigate through their files and folders and preview files like images, videos, and documents.
+
+File Download and Import: When the user clicks on a file, the package automatically downloads the selected file and imports it into the project. This feature eliminates the need for users to manually download the file from the web or the Google Drive app.
+
+Error Handling: The package includes comprehensive error handling for all operations, ensuring that any issues are reported to the user in a clear and concise manner.
+
+Overall, the "GoogleDriveHandler" package simplifies the integration of Google Drive into Flutter apps, allowing users to seamlessly access their files and folders without leaving the app.
 
 ## Images/ Screenshots
 
@@ -13,7 +25,6 @@ A package for viewing, browsing, searching, downloading and uploading Google Dri
 - Browsing User Google Drive Files
 - Searching User Google Drive Files
 - Downloading User Google CDrive Files
-- Uploading Files to the Users Google Drive
 
 ## Getting started
 

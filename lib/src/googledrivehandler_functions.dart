@@ -1,8 +1,7 @@
 import 'dart:developer';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart' as signIn;
+import 'package:google_sign_in/google_sign_in.dart' as google_sign_in;
 import 'package:googleapis/drive/v3.dart' as drive;
 import 'package:http/http.dart' as http;
 
@@ -10,20 +9,19 @@ import 'googledrivehandler_screen.dart';
 
 class GoogleDriveHandler {
   GoogleDriveHandler._internal();
-  static final GoogleDriveHandler _googleDriveHandler =
-      GoogleDriveHandler._internal();
+  static final GoogleDriveHandler _googleDriveHandler = GoogleDriveHandler._internal();
   factory GoogleDriveHandler() => _googleDriveHandler;
 
-  signIn.GoogleSignInAccount? account;
+  google_sign_in.GoogleSignInAccount? account;
 
-  String? _GOOGLEDRIVEAPIKEY;
+  String? _googlDriveApiKey;
 
-  setAPIKey({required String APIKey}) {
-    _GOOGLEDRIVEAPIKEY = APIKey;
+  setAPIKey({required String apiKey}) {
+    _googlDriveApiKey = apiKey;
   }
 
   Future getFileFromGoogleDrive({required BuildContext context}) async {
-    if (_GOOGLEDRIVEAPIKEY != null) {
+    if (_googlDriveApiKey != null) {
       await _signinUser();
       if (account != null) {
         return await _openGoogleDriveScreen(context);
@@ -45,7 +43,7 @@ class GoogleDriveHandler {
       MaterialPageRoute(
         builder: (context) => GoogleDriveScreen(
           fileList: fileList,
-          GOOGLEDRIVEAPIKEY: _GOOGLEDRIVEAPIKEY.toString(),
+          googleDriveApiKey: _googlDriveApiKey.toString(),
           authenticateClient: authenticateClient,
           userName: account!.displayName!.substring(
             0,
@@ -57,8 +55,7 @@ class GoogleDriveHandler {
   }
 
   Future _signinUser() async {
-    final googleSignIn =
-        signIn.GoogleSignIn.standard(scopes: [drive.DriveApi.driveScope]);
+    final googleSignIn = google_sign_in.GoogleSignIn.standard(scopes: [drive.DriveApi.driveScope]);
     account = await googleSignIn.signIn();
     return;
   }

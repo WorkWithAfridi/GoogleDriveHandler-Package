@@ -1,7 +1,7 @@
 name: googledrivehandler
 description: A package for viewing, browsing, searching, downloading and
   uploading Google Drive files.
-version: 1.0.1
+version: 1.0.2
 homepage: https://github.com/WorkWithAfridi/GoogleDriveHandler
 
 environment:

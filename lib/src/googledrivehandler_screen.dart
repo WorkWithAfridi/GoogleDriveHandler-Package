@@ -9,7 +9,7 @@ class GoogleDriveScreen extends StatefulWidget {
   GoogleDriveScreen({
     super.key,
     required this.fileList,
-    required this.GOOGLEDRIVEAPIKEY,
+    required this.googleDriveApiKey,
     required this.authenticateClient,
     required this.userName,
   });
@@ -19,7 +19,7 @@ class GoogleDriveScreen extends StatefulWidget {
   // This is the authenticated users display name, extracted from the google signin process.
   String userName;
   // This is the developers GOOGLE CLOUD CONSOLE API CREDENTIAL KEY.
-  String GOOGLEDRIVEAPIKEY;
+  String googleDriveApiKey;
   // This is the authenticaedClient, generated after the signing in process.
   var authenticateClient;
 
@@ -161,8 +161,7 @@ class _GoogleDriveScreenState extends State<GoogleDriveScreen> {
                                 ),
                                 child: GestureDetector(
                                   onTap: () async {
-                                    await _onItemTap(
-                                        file, widget.authenticateClient);
+                                    await _onItemTap(file, widget.authenticateClient);
                                   },
                                   child: _ItemCard(
                                     file: file,
@@ -173,9 +172,7 @@ class _GoogleDriveScreenState extends State<GoogleDriveScreen> {
                               ));
                       } else {
                         // if the searchVal is not null return only the files that contatins the searchVal in their name
-                        if (file.name!
-                            .toLowerCase()
-                            .contains(searchVal!.toLowerCase())) {
+                        if (file.name!.toLowerCase().contains(searchVal!.toLowerCase())) {
                           return file.mimeType!.contains(".folder")
                               ? const SizedBox.shrink()
                               : Padding(
@@ -184,8 +181,7 @@ class _GoogleDriveScreenState extends State<GoogleDriveScreen> {
                                   ),
                                   child: GestureDetector(
                                     onTap: () async {
-                                      await _onItemTap(
-                                          file, widget.authenticateClient);
+                                      await _onItemTap(file, widget.authenticateClient);
                                     },
                                     child: _ItemCard(
                                       file: file,
@@ -231,7 +227,7 @@ class _GoogleDriveScreenState extends State<GoogleDriveScreen> {
     if (fileMimeType.contains("spreadsheet") && !fileName.contains(".xlsx")) {
       //If the file is a google doc file, export the file as instructed by the google team.
       String url =
-          "https://www.googleapis.com/drive/v3/files/${file.id}/export?mimeType=application/vnd.openxmlformats-officedocument.spreadsheetml.sheet&key=${widget.GOOGLEDRIVEAPIKEY} HTTP/1.1";
+          "https://www.googleapis.com/drive/v3/files/${file.id}/export?mimeType=application/vnd.openxmlformats-officedocument.spreadsheetml.sheet&key=${widget.googleDriveApiKey} HTTP/1.1";
 
       response = await authenticateClient.get(
         Uri.parse(url),
@@ -239,7 +235,7 @@ class _GoogleDriveScreenState extends State<GoogleDriveScreen> {
     } else if (!fileMimeType.contains(".folder")) {
       // If the file is uploaded from somewhere else or if the file is not a google doc file process it with the "Files: Get" process.
       String url =
-          "https://www.googleapis.com/drive/v3/files/$fileId?includeLabels=alt%3Dmedia&alt=media&key=${widget.GOOGLEDRIVEAPIKEY} HTTP/1.1";
+          "https://www.googleapis.com/drive/v3/files/$fileId?includeLabels=alt%3Dmedia&alt=media&key=${widget.googleDriveApiKey} HTTP/1.1";
 
       response = await authenticateClient.get(
         Uri.parse(url),
@@ -267,14 +263,14 @@ class _GoogleDriveScreenState extends State<GoogleDriveScreen> {
 
 // This is the custom widget which lays out the google drive files.
 class _ItemCard extends StatelessWidget {
-  _ItemCard({
+  const _ItemCard({
     Key? key,
     required this.file,
     required this.fileList,
     required this.index,
   }) : super(key: key);
 
-  int index;
+  final int index;
   final File file;
   final FileList fileList;
 
