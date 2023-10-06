@@ -9,17 +9,17 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
-  firebase_auth: ^3.9.0
-  firebase_core: ^1.22.0
+  firebase_auth: ^4.10.1
+  firebase_core: ^2.17.0
   flutter:
     sdk: flutter
-  google_sign_in: ^5.4.1
-  googleapis: ^9.2.0
-  http: ^0.13.5
-  path_provider: ^2.0.11
+  google_sign_in: ^6.1.5
+  googleapis: ^11.4.0
+  http: ^1.1.0
+  path_provider: ^2.1.1
 
 dev_dependencies:
-  flutter_lints: ^2.0.0
+  flutter_lints: ^2.0.3
   flutter_test:
     sdk: flutter
 
