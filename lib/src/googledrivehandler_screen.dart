@@ -161,7 +161,8 @@ class _GoogleDriveScreenState extends State<GoogleDriveScreen> {
                                 ),
                                 child: GestureDetector(
                                   onTap: () async {
-                                    await _onItemTap(file, widget.authenticateClient);
+                                    await _onItemTap(
+                                        file, widget.authenticateClient);
                                   },
                                   child: _ItemCard(
                                     file: file,
@@ -172,7 +173,9 @@ class _GoogleDriveScreenState extends State<GoogleDriveScreen> {
                               ));
                       } else {
                         // if the searchVal is not null return only the files that contatins the searchVal in their name
-                        if (file.name!.toLowerCase().contains(searchVal!.toLowerCase())) {
+                        if (file.name!
+                            .toLowerCase()
+                            .contains(searchVal!.toLowerCase())) {
                           return file.mimeType!.contains(".folder")
                               ? const SizedBox.shrink()
                               : Padding(
@@ -181,7 +184,8 @@ class _GoogleDriveScreenState extends State<GoogleDriveScreen> {
                                   ),
                                   child: GestureDetector(
                                     onTap: () async {
-                                      await _onItemTap(file, widget.authenticateClient);
+                                      await _onItemTap(
+                                          file, widget.authenticateClient);
                                     },
                                     child: _ItemCard(
                                       file: file,

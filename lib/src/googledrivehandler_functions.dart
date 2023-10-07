@@ -9,7 +9,8 @@ import 'googledrivehandler_screen.dart';
 
 class GoogleDriveHandler {
   GoogleDriveHandler._internal();
-  static final GoogleDriveHandler _googleDriveHandler = GoogleDriveHandler._internal();
+  static final GoogleDriveHandler _googleDriveHandler =
+      GoogleDriveHandler._internal();
   factory GoogleDriveHandler() => _googleDriveHandler;
 
   google_sign_in.GoogleSignInAccount? account;
@@ -55,7 +56,8 @@ class GoogleDriveHandler {
   }
 
   Future _signinUser() async {
-    final googleSignIn = google_sign_in.GoogleSignIn.standard(scopes: [drive.DriveApi.driveScope]);
+    final googleSignIn = google_sign_in.GoogleSignIn.standard(
+        scopes: [drive.DriveApi.driveScope]);
     account = await googleSignIn.signIn();
     return;
   }

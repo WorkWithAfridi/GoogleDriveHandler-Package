@@ -52,7 +52,8 @@ class MainScreen extends StatelessWidget {
           children: [
             ElevatedButton(
               onPressed: () async {
-                File? myFile = await GoogleDriveHandler().getFileFromGoogleDrive(context: context);
+                File? myFile = await GoogleDriveHandler()
+                    .getFileFromGoogleDrive(context: context);
                 if (myFile != null) {
                   /// Do something with the file
                   /// for instance open the file
