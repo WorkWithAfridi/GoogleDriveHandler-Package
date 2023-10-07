@@ -1,3 +1,5 @@
+## 1.0.3
+- Updated all external dependencies to the latest version
 ## 1.0.2
 - Documentation updated
 ## 1.0.1
