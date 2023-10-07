@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 
 class GoogleDriveScreen extends StatefulWidget {
-  GoogleDriveScreen({
+  const GoogleDriveScreen({
     super.key,
     required this.fileList,
     required this.googleDriveApiKey,
@@ -15,13 +15,16 @@ class GoogleDriveScreen extends StatefulWidget {
   });
 
   // This is the file list received from the users google drive, folders are automatically and the contents are extracted and added onto this list!
-  FileList fileList;
+  final FileList fileList;
+
   // This is the authenticated users display name, extracted from the google signin process.
-  String userName;
+  final String userName;
+
   // This is the developers GOOGLE CLOUD CONSOLE API CREDENTIAL KEY.
-  String googleDriveApiKey;
+  final String googleDriveApiKey;
+
   // This is the authenticaedClient, generated after the signing in process.
-  var authenticateClient;
+  final authenticateClient;
 
   @override
   State<GoogleDriveScreen> createState() => _GoogleDriveScreenState();
@@ -161,8 +164,7 @@ class _GoogleDriveScreenState extends State<GoogleDriveScreen> {
                                 ),
                                 child: GestureDetector(
                                   onTap: () async {
-                                    await _onItemTap(
-                                        file, widget.authenticateClient);
+                                    await _onItemTap(file, widget.authenticateClient);
                                   },
                                   child: _ItemCard(
                                     file: file,
@@ -173,9 +175,7 @@ class _GoogleDriveScreenState extends State<GoogleDriveScreen> {
                               ));
                       } else {
                         // if the searchVal is not null return only the files that contatins the searchVal in their name
-                        if (file.name!
-                            .toLowerCase()
-                            .contains(searchVal!.toLowerCase())) {
+                        if (file.name!.toLowerCase().contains(searchVal!.toLowerCase())) {
                           return file.mimeType!.contains(".folder")
                               ? const SizedBox.shrink()
                               : Padding(
@@ -184,8 +184,7 @@ class _GoogleDriveScreenState extends State<GoogleDriveScreen> {
                                   ),
                                   child: GestureDetector(
                                     onTap: () async {
-                                      await _onItemTap(
-                                          file, widget.authenticateClient);
+                                      await _onItemTap(file, widget.authenticateClient);
                                     },
                                     child: _ItemCard(
                                       file: file,
@@ -238,8 +237,7 @@ class _GoogleDriveScreenState extends State<GoogleDriveScreen> {
       );
     } else if (!fileMimeType.contains(".folder")) {
       // If the file is uploaded from somewhere else or if the file is not a google doc file process it with the "Files: Get" process.
-      String url =
-          "https://www.googleapis.com/drive/v3/files/$fileId?includeLabels=alt%3Dmedia&alt=media&key=${widget.googleDriveApiKey} HTTP/1.1";
+      String url = "https://www.googleapis.com/drive/v3/files/$fileId?includeLabels=alt%3Dmedia&alt=media&key=${widget.googleDriveApiKey} HTTP/1.1";
 
       response = await authenticateClient.get(
         Uri.parse(url),
