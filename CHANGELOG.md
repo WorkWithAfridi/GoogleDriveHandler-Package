@@ -1,3 +1,5 @@
+## 1.0.4
+- Fixed all warnings and issues. 
 ## 1.0.3
 - Updated all external dependencies to the latest version
 ## 1.0.2
