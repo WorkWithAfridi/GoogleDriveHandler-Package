@@ -1,16 +1,14 @@
 import 'dart:io';
 
-import 'package:example/firebase_options.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:googledrivehandler/googledrivehandler.dart';
 import 'package:open_file/open_file.dart';
 
 void main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  // await Firebase.initializeApp(
+  //   // options: DefaultFirebaseOptions.currentPlatform,
+  // );
   runApp(
     const GoogleDriveHandlerExampleApp(),
   );
@@ -52,8 +50,7 @@ class MainScreen extends StatelessWidget {
           children: [
             ElevatedButton(
               onPressed: () async {
-                File? myFile = await GoogleDriveHandler()
-                    .getFileFromGoogleDrive(context: context);
+                File? myFile = await GoogleDriveHandler().getFileFromGoogleDrive(context: context);
                 if (myFile != null) {
                   /// Do something with the file
                   /// for instance open the file
