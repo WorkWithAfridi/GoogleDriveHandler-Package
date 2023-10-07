@@ -1,7 +1,7 @@
 {
   "file_generated_by": "FlutterFire CLI",
   "purpose": "FirebaseAppID & ProjectID for this Firebase app in this directory",
-  "GOOGLE_APP_ID": "1:438147421441:ios:9a1ad34808ef47fcfa3700",
-  "FIREBASE_PROJECT_ID": "drivehandlerapp",
-  "GCM_SENDER_ID": "438147421441"
+  "GOOGLE_APP_ID": "1:783501479359:ios:d002e01d68bcf08855a50a",
+  "FIREBASE_PROJECT_ID": "drivehandlerapi",
+  "GCM_SENDER_ID": "783501479359"
 }

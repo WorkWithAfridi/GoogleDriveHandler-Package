@@ -1,17 +1,16 @@
 import 'dart:io';
 
+import 'package:example/firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:googledrivehandler/googledrivehandler.dart';
 import 'package:open_file/open_file.dart';
 
-// import 'firebase_options.dart';
-// Connect firebase
-
 void main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp(
-  //   // options: DefaultFirebaseOptions.currentPlatform,
-  // );
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(
     const GoogleDriveHandlerExampleApp(),
   );
@@ -31,7 +30,7 @@ class GoogleDriveHandlerExampleApp extends StatelessWidget {
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
-  final String myApiKey = "YOUR API HERE";
+  final String myApiKey = "YOUR_API_KEY";
 
   @override
   Widget build(BuildContext context) {
@@ -55,11 +54,11 @@ class MainScreen extends StatelessWidget {
               onPressed: () async {
                 File? myFile = await GoogleDriveHandler().getFileFromGoogleDrive(context: context);
                 if (myFile != null) {
-                  //Do something with the file
-                  //for instance open the file
+                  /// Do something with the file
+                  /// for instance open the file
                   OpenFile.open(myFile.path);
                 } else {
-                  //Discard...
+                  /// Discard...
                 }
               },
               child: const Text(

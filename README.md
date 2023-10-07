@@ -31,12 +31,8 @@ Overall, the "GoogleDriveHandler" package simplifies the integration of Google D
 * Import this package!
 
 * Integrate Firebase to your project, and active authentication
-  Please be advised, you can only use 
-  firebase_core: ^1.22.0
-  firebase_auth: ^3.9.0
-  Since the firebase auth version used in this package needs that specific firebase_core version.
 
-* Add Google Signin Authentication from firebase
+* Add Google Signin Authentication from Firebase
 
 * Generate SHA Keys by
   1. “cd android”
@@ -116,7 +112,7 @@ Note that step 7 is still required.
 
 ## PLEASE BE ADVISED
 
-* Clicking on any file on the Google Drive interface will download the file and store it in the apps cache, and return an instance of the file instance to the calling method, that being GoogleDriveHandler().getFilesFromGoogleDrive(context), in other words, that function returns an instance of the clicked file.
+* Clicking on any file on the Google Drive interface will download the file and store it in the app's cache, and return an instance of the file instance to the calling method, that being GoogleDriveHandler().getFilesFromGoogleDrive(context), in other words, that function returns an instance of the clicked file.
 
 * The resulting download file is saved in `NSTemporaryDirectory` on iOS and application Cache directory on Android, so it can be lost later, you are responsible for storing it somewhere permanent (if needed).
 
@@ -129,12 +125,12 @@ Note that step 7 is still required.
 ## Additional information
 
 * Packages used in this project.
-* firebase_auth: ^3.9.0
-* firebase_core: ^1.22.0
-* google_sign_in: ^5.4.1
-* googleapis: ^9.2.0
+* firebase_auth: ^4.10.1
+* firebase_core: ^2.17.0
+* google_sign_in: ^6.1.5
+* googleapis: ^11.4.0
 * http: ^0.13.5
-* path_provider: ^2.0.11
+* path_provider: ^2.1.1
 
 ## Example
 
