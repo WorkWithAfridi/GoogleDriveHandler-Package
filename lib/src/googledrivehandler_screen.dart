@@ -163,7 +163,7 @@ class _GoogleDriveScreenState extends State<GoogleDriveScreen> {
                                   bottom: 10,
                                 ),
                                 child: GestureDetector(
-                                  onTap: () async {
+                                  onLongPress: () async {
                                     await _onItemTap(file, widget.authenticateClient);
                                   },
                                   child: _ItemCard(
@@ -183,7 +183,7 @@ class _GoogleDriveScreenState extends State<GoogleDriveScreen> {
                                     bottom: 10,
                                   ),
                                   child: GestureDetector(
-                                    onTap: () async {
+                                    onLongPress: () async {
                                       await _onItemTap(file, widget.authenticateClient);
                                     },
                                     child: _ItemCard(
