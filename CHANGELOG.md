@@ -1,3 +1,5 @@
+## 1.0.5
+- Some minor UI improvements and added adaptive dialogs.
 ## 1.0.4
 - Fixed all warnings and issues. 
 ## 1.0.3

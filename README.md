@@ -2,7 +2,7 @@
 
 ## "GoogleDriveHandler" package simplifies the integration of Google Drive into Flutter apps, allowing users to seamlessly access their files and folders without leaving the app.
 
-The "GoogleDriveHandler" is a Flutter package that provides a seamless integration of Google Drive functionality into a Flutter app. The package allows users to sign in to their Google accounts, view their Google Drive content within the app, and automatically download selected files to be imported into the app.
+The "GoogleDriveHandler" is a Flutter package that provides a seamless integration of Google Drive functionality into a Flutter app. The package allows users to sign in to their Google accounts, view their Google Drive content within the app, and download selected files, to be imported into the app.
 
 Here's an overview of the package's features:
 
@@ -25,6 +25,7 @@ Overall, the "GoogleDriveHandler" package simplifies the integration of Google D
 - Browsing User Google Drive Files
 - Searching User Google Drive Files
 - Downloading User Google CDrive Files
+- Adaptive user interface for Android and iOS
 
 ## Getting started
 
