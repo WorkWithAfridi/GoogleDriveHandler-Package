@@ -31,6 +31,8 @@ class GoogleDriveScreen extends StatefulWidget {
 }
 
 class _GoogleDriveScreenState extends State<GoogleDriveScreen> {
+  // global key is created to avoid the transfer of context across async gaps error
+  final GlobalKey<ScaffoldState> contextKey = GlobalKey<ScaffoldState>();
   //On every search input this function gets called, and the search value (searchVal gets updated).
   onSearchFieldChange(String val) {
     setState(() {
@@ -60,159 +62,112 @@ class _GoogleDriveScreenState extends State<GoogleDriveScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        elevation: 3,
-        backgroundColor: Colors.white,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: const Icon(
-            Icons.arrow_back_ios,
-            size: 18,
-            color: Colors.black,
-          ),
-        ),
-
-        // Title widget changes base on whether user toggles search on not.
-        title: showSearchTextForm
-            ?
-            // when search has been toggled this title Widget will be shown.
-            // This is the text input field where users will input their search term
-            TextFormField(
-                controller: searchController,
-                // textAlignVertical: TextAlignVertical.center,
-                onChanged: (String value) {
-                  onSearchFieldChange(value);
-                },
-                style: TextStyle(
-                  // fontSize: 12,
-                  fontWeight: FontWeight.w400,
-                  color: Colors.grey[700],
-                ),
-                cursorColor: Colors.black,
-                decoration: const InputDecoration(
-                  hintText: "Search",
-                  border: InputBorder.none,
-                  contentPadding: EdgeInsets.symmetric(
-                    horizontal: 0,
-                    vertical: 0,
-                  ),
-                ),
-              )
-            :
-            //Default title widget
-            Text(
-                "${widget.userName}'s Google Drive",
-                style: const TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 15,
-                ),
-              ),
-        centerTitle: true,
-        actions: [
-          IconButton(
+    return Theme(
+      data: ThemeData.dark(),
+      child: Scaffold(
+        key: contextKey,
+        appBar: AppBar(
+          elevation: 3,
+          //backgroundColor: Colors.white,
+          leading: IconButton(
             onPressed: () {
-              setState(() {
-                showSearchTextForm = !showSearchTextForm;
-                searchVal = null;
-              });
+              Navigator.pop(context);
             },
-            icon: Icon(
-              showSearchTextForm ? Icons.close : Icons.search,
+            icon: const Icon(
+              Icons.arrow_back_ios,
               size: 18,
-              color: Colors.black,
-            ),
-          )
-        ],
-      ),
-      body: Stack(
-        children: [
-          Container(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 10,
-            ),
-            child: SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  // Default top padding
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  // List of files from the authenticated users Google drive account
-                  ListView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: widget.fileList.files!.toList().length,
-                    itemBuilder: ((context, index) {
-                      File file = widget.fileList.files!.toList()[index];
-
-                      if (searchVal == null) {
-                        // If searchVal is null, show all files and folders.
-                        return (file.mimeType!.contains(".folder")
-                            ?
-                            // if the list contains folders, ignore the folders. Since all the contents from the folders are already extracted and added in the file list.
-                            const SizedBox.shrink()
-                            : Padding(
-                                padding: const EdgeInsets.only(
-                                  bottom: 10,
-                                ),
-                                child: GestureDetector(
-                                  onTap: () async {
-                                    await _onItemTap(file, widget.authenticateClient);
-                                  },
-                                  child: _ItemCard(
-                                    file: file,
-                                    fileList: widget.fileList,
-                                    index: index,
-                                  ),
-                                ),
-                              ));
-                      } else {
-                        // if the searchVal is not null return only the files that contatins the searchVal in their name
-                        if (file.name!.toLowerCase().contains(searchVal!.toLowerCase())) {
-                          return file.mimeType!.contains(".folder")
-                              ? const SizedBox.shrink()
-                              : Padding(
-                                  padding: const EdgeInsets.only(
-                                    bottom: 10,
-                                  ),
-                                  child: GestureDetector(
-                                    onTap: () async {
-                                      await _onItemTap(file, widget.authenticateClient);
-                                    },
-                                    child: _ItemCard(
-                                      file: file,
-                                      fileList: widget.fileList,
-                                      index: index,
-                                    ),
-                                  ),
-                                );
-                        } else {
-                          // Ignore if the file name does not contain the searchVal term.
-                          return const SizedBox.shrink();
-                        }
-                      }
-                    }),
-                  ),
-                ],
-              ),
+              //color: Colors.black,
             ),
           ),
-          // If is loading show, circular progress indicator.
-          isLoading
-              ? const Center(
-                  child: CircularProgressIndicator(
-                    color: Colors.lightBlue,
+
+          // Title widget changes base on whether user toggles search on not.
+          title: showSearchTextForm
+              ?
+              // when search has been toggled this title Widget will be shown.
+              // This is the text input field where users will input their search term
+              TextFormField(
+                  controller: searchController,
+                  // textAlignVertical: TextAlignVertical.center,
+                  onChanged: (String value) {
+                    onSearchFieldChange(value);
+                  },
+                  style: const TextStyle(
+                    // fontSize: 12,
+                    fontWeight: FontWeight.w400,
+                  ),
+                  decoration: const InputDecoration(
+                    hintText: "Search",
+                    border: InputBorder.none,
+                    contentPadding: EdgeInsets.symmetric(
+                      horizontal: 0,
+                      vertical: 0,
+                    ),
                   ),
                 )
-              : const SizedBox.shrink(),
-        ],
+              :
+              //Default title widget
+              Text(
+                  "${widget.userName}'s Google Drive",
+                  style: const TextStyle(
+                    //color: Colors.black,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 16,
+                  ),
+                ),
+          centerTitle: true,
+          actions: [
+            IconButton(
+              onPressed: () {
+                setState(() {
+                  showSearchTextForm = !showSearchTextForm;
+                  searchVal = null;
+                });
+              },
+              icon: Icon(
+                showSearchTextForm ? Icons.close : Icons.search,
+                size: 22,
+                //color: Colors.black,
+              ),
+            )
+          ],
+        ),
+        body: Stack(
+          children: [
+            Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 2,
+              ),
+              child: SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    // Default top padding
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    // List of files from the authenticated users Google drive account
+                    GridView.count(
+                      crossAxisCount: 2,
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      //itemCount: widget.fileList.files!.toList().length,
+                      children: [...gridListItems()],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            // If is loading show, circular progress indicator.
+            isLoading
+                ? const Center(
+                    child: CircularProgressIndicator(
+                      color: Colors.lightBlue,
+                    ),
+                  )
+                : const SizedBox.shrink(),
+          ],
+        ),
       ),
     );
   }
@@ -237,7 +192,8 @@ class _GoogleDriveScreenState extends State<GoogleDriveScreen> {
       );
     } else if (!fileMimeType.contains(".folder")) {
       // If the file is uploaded from somewhere else or if the file is not a google doc file process it with the "Files: Get" process.
-      String url = "https://www.googleapis.com/drive/v3/files/$fileId?includeLabels=alt%3Dmedia&alt=media&key=${widget.googleDriveApiKey} HTTP/1.1";
+      String url =
+          "https://www.googleapis.com/drive/v3/files/$fileId?includeLabels=alt%3Dmedia&alt=media&key=${widget.googleDriveApiKey} HTTP/1.1";
 
       response = await authenticateClient.get(
         Uri.parse(url),
@@ -261,45 +217,168 @@ class _GoogleDriveScreenState extends State<GoogleDriveScreen> {
       isLoading = false;
     });
   }
+
+  //Creates a dialogue when a file is tapped and asks if user wants to download it
+  Future<void> showDownloadDialogue(File file, var authenticateClient) async {
+    switch (await showDialog<int>(
+      context: contextKey.currentContext!,
+      builder: (BuildContext context) => AlertDialog(
+        title: const Text('Download'),
+        content: Text(
+          '${file.name!} ?',
+          maxLines: 2,
+        ),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.pop(context, 2),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.pop(context, 1),
+            child: const Text('Yes'),
+          ),
+        ],
+      ),
+    )) {
+      case 1:
+        await _onItemTap(file, authenticateClient);
+        break;
+      case 2:
+        break;
+    }
+  }
+
+  List<Widget> gridListItems() {
+    // loops through file list and returns the list items
+    List<Widget?> listOfwidgets = widget.fileList.files!.toList().map((file) {
+      if (searchVal == null) {
+        // If searchVal is null, show all files and folders.
+        return (file.mimeType!.contains(".folder")
+            ?
+            // if the list contains folders, ignore the folders. Since all the contents from the folders are already extracted and added in the file list.
+            null
+            : Padding(
+                padding: const EdgeInsets.all(10),
+                child: GestureDetector(
+                  onTap: () async {
+                    await showDownloadDialogue(file, widget.authenticateClient);
+                  },
+                  child: _ItemCard(
+                    file: file,
+                  ),
+                ),
+              ));
+      } else {
+        // if the searchVal is not null return only the files that contatins the searchVal in their name
+        if (file.name!.toLowerCase().contains(searchVal!.toLowerCase())) {
+          return file.mimeType!.contains(".folder")
+              ? null
+              : Padding(
+                  padding: const EdgeInsets.only(
+                    bottom: 10,
+                  ),
+                  child: GestureDetector(
+                    onTap: () async {
+                      await showDownloadDialogue(
+                          file, widget.authenticateClient);
+                    },
+                    child: _ItemCard(
+                      file: file,
+                    ),
+                  ),
+                );
+        } else {
+          // Ignore if the file name does not contain the searchVal term.
+          return null;
+        }
+      }
+    }).toList();
+
+    // removes all null values from the list
+    listOfwidgets.removeWhere((element) => element == null);
+
+    // To convert the List<Widget?> to List<Widget>
+    List<Widget> newWidgetList =
+        listOfwidgets.map<Widget>((item) => item!).toList();
+    return newWidgetList;
+  }
 }
 
 // This is the custom widget which lays out the google drive files.
 class _ItemCard extends StatelessWidget {
-  const _ItemCard({
+  _ItemCard({
     Key? key,
     required this.file,
-    required this.fileList,
-    required this.index,
   }) : super(key: key);
 
-  final int index;
   final File file;
-  final FileList fileList;
 
+  // Add other mimeTypes here
+  final List<String> videoFileExt = ["video/mp4", "audio/mp4"];
+  final List<String> powerpointExt = [
+    "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+    "application/vnd.google-apps.presentation"
+  ];
+  final List<String> pdfExt = ["application/pdf"];
+  final List<String> picExt = ["image/jpeg"];
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 15,
-        vertical: 10,
-      ),
-      decoration: BoxDecoration(
-        color: Colors.grey[100],
-        borderRadius: BorderRadius.circular(2),
-      ),
-      child: Row(
+    // Set icon to display according to file mimeType
+    Widget displayIcon = videoFileExt.contains(file.mimeType)
+        ? const Icon(
+            Icons.video_file,
+            color: Colors.amberAccent,
+            size: 50,
+          )
+        : powerpointExt.contains(file.mimeType)
+            ? const Icon(
+                Icons.slideshow,
+                color: Colors.white,
+                size: 50,
+              )
+            : pdfExt.contains(file.mimeType)
+                ? const Icon(
+                    Icons.picture_as_pdf,
+                    color: Colors.red,
+                    size: 50,
+                  )
+                : picExt.contains(file.mimeType)
+                    ? const Icon(
+                        Icons.image,
+                        color: Colors.purple,
+                        size: 50,
+                      )
+                    : const Icon(
+                        Icons.description,
+                        color: Colors.lightBlue,
+                        size: 50,
+                      );
+
+    return Card(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          const Icon(
-            Icons.description,
-            color: Colors.lightBlue,
-          ),
+          Expanded(
+              flex: 2,
+              child: Card(
+                margin: const EdgeInsets.all(5),
+                color: ThemeData.dark().primaryColorDark,
+                child: displayIcon,
+              )),
           const SizedBox(
-            width: 8,
+            height: 3,
           ),
           Expanded(
-            child: Text(
-              fileList.files!.toList()[index].name!,
-              overflow: TextOverflow.ellipsis,
+            flex: 1,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 8),
+              child: Text(
+                file.name!,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 2,
+                textAlign: TextAlign.center,
+              ),
             ),
           )
         ],

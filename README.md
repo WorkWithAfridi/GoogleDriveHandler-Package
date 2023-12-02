@@ -112,7 +112,7 @@ Note that step 7 is still required.
 
 ## PLEASE BE ADVISED
 
-* Clicking on any file on the Google Drive interface will download the file and store it in the app's cache, and return an instance of the file instance to the calling method, that being GoogleDriveHandler().getFilesFromGoogleDrive(context), in other words, that function returns an instance of the clicked file.
+* Downloaded files wil be stored in the app's cache, and return an instance of the file instance to the calling method, that being GoogleDriveHandler().getFilesFromGoogleDrive(context), in other words, that function returns an instance of the clicked file.
 
 * The resulting download file is saved in `NSTemporaryDirectory` on iOS and application Cache directory on Android, so it can be lost later, you are responsible for storing it somewhere permanent (if needed).
 
