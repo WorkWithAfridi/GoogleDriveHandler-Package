@@ -86,7 +86,7 @@ This plugin requires iOS 9.0 or higher.
 			<!-- TODO Replace this value: -->
 			<!-- You can find the following REVERSED_CLIENT_ID at GoogleService-Info.plist. -->
 			<!-- copy your REVERSED_CLIENT_ID and replace the one given here! -->
-			<string>com.googleusercontent.apps.861823949799-vc35cprkp249096uujjn0vvnmcvjppkn</string>
+			<string>YOUR_REVERSED_CLIENT_ID</string>
 		</array>
 	</dict>
 </array>
@@ -154,4 +154,4 @@ Future getFileFromGoogleDrive() async {
 
 ## Questions ?
 
-* If you have any questions feel free to contact me at: khondakarafridi35@gmail.com
+* If you have any questions feel free to contact me at: afridi.khondakar@gmail.com
