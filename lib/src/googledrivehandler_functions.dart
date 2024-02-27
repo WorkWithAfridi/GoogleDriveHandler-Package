@@ -43,14 +43,15 @@ class GoogleDriveHandler {
     return Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => GoogleDriveScreen(
-          fileList: fileList,
-          googleDriveApiKey: _googlDriveApiKey.toString(),
-          authenticateClient: authenticateClient,
-          userName: account!.displayName!.substring(
-            0,
-            account!.displayName!.indexOf(" "),
-          ),
-        ),
+            fileList: fileList,
+            googleDriveApiKey: _googlDriveApiKey.toString(),
+            authenticateClient: authenticateClient,
+            userName: account!.displayName!
+            // substring(
+            //   0,
+            //   account!.displayName!.indexOf(" "),
+            // ),
+            ),
       ),
     );
   }
