@@ -9,8 +9,7 @@ import 'googledrivehandler_screen.dart';
 
 class GoogleDriveHandler {
   GoogleDriveHandler._internal();
-  static final GoogleDriveHandler _googleDriveHandler =
-      GoogleDriveHandler._internal();
+  static final GoogleDriveHandler _googleDriveHandler = GoogleDriveHandler._internal();
   factory GoogleDriveHandler() => _googleDriveHandler;
 
   google_sign_in.GoogleSignInAccount? account;
@@ -36,7 +35,6 @@ class GoogleDriveHandler {
 
   _openGoogleDriveScreen(BuildContext context) async {
     final authHeaders = await account!.authHeaders;
-    log(account!.displayName.toString());
     final authenticateClient = _GoogleAuthClient(authHeaders);
     final driveApi = drive.DriveApi(authenticateClient);
     drive.FileList fileList = await driveApi.files.list();
@@ -46,15 +44,14 @@ class GoogleDriveHandler {
           fileList: fileList,
           googleDriveApiKey: _googlDriveApiKey.toString(),
           authenticateClient: authenticateClient,
-          userName: account!.displayName!.replaceAll(" ", ""),
+          userName: (account?.displayName ?? "").replaceAll(" ", ""),
         ),
       ),
     );
   }
 
   Future _signinUser() async {
-    final googleSignIn = google_sign_in.GoogleSignIn.standard(
-        scopes: [drive.DriveApi.driveScope]);
+    final googleSignIn = google_sign_in.GoogleSignIn.standard(scopes: [drive.DriveApi.driveScope]);
     account = await googleSignIn.signIn();
     return;
   }
