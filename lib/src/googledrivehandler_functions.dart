@@ -46,10 +46,7 @@ class GoogleDriveHandler {
           fileList: fileList,
           googleDriveApiKey: _googlDriveApiKey.toString(),
           authenticateClient: authenticateClient,
-          userName: account!.displayName!.substring(
-            0,
-            account!.displayName!.indexOf(" "),
-          ),
+          userName: account!.displayName!.replaceAll(" ", ""),
         ),
       ),
     );
