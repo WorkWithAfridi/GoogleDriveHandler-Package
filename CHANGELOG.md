@@ -1,3 +1,5 @@
+## 1.0.6
+- Some minor bugfixes and updated dependencies to the latest version
 ## 1.0.5
 - Some minor UI improvements and added adaptive dialogs.
 ## 1.0.4
