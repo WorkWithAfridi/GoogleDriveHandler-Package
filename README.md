@@ -123,16 +123,6 @@ Note that step 7 is still required.
 
 * **Google Drive APIKEY** for Google Drive related functionalaties
 
-## Additional information
-
-* Packages used in this project.
-* firebase_auth: ^4.10.1
-* firebase_core: ^2.17.0
-* google_sign_in: ^6.1.5
-* googleapis: ^11.4.0
-* http: ^0.13.5
-* path_provider: ^2.1.1
-
 ## Example
 
 ````dart
